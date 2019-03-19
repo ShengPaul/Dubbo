@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+
+
+    <!-- 为消费者取别名 -->
+    <dubbo:application name="dubbo-consumer"/>
+
+
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!-- 之前在服务者中服务者宝暴露了一个接口 -->
+    <!-- 在消费者中引用这个接口 并取个别名 -->       <!-- 会从zookeeper中远程调用这个接口 -->
+    <dubbo:reference interface="com.xtkj.service.IProductApi" id="productService" />
+</beans>
